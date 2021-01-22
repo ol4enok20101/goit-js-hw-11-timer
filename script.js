@@ -5,15 +5,24 @@ const secsRef = document.querySelector('[data-value="secs"]');
 
 const timer = {
   intervalId: null,
+  // isActive: true,
 
   start() {
-    const contdownTime = new Date("December 1, 2021 23:45:00").getTime();
+    // const contdownTime = new Date("December 1, 2021 23:45:00").getTime();
+    const contdownTime = new Date("January 22, 2021 17:11:00").getTime();
 
     this.intervalId = setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = contdownTime - currentTime;
       getTimeComponents(deltaTime);
     }, 1000);
+  },
+  stop() {
+    // this.isActive = false;
+    if (this.contdownTime === this.currentTime) {
+      clearInterval(this.intervalId);
+      getTimeComponents(0);
+    };
   },
 };
 
@@ -34,4 +43,4 @@ function getTimeComponents(time) {
   secsRef.textContent = `${secs}`;
 }
 
-timer.start(); 
+timer.start();
